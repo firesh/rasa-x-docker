@@ -1,6 +1,6 @@
 FROM rasa/rasa:3.0.9-full
 
-RUN wget http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz && \
+RUN curl -OL http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz && \
   tar -xvf libxml2-2.9.1.tar.gz && \
   cd libxml2-2.9.1 && \
   ./configure && make && make install && \
