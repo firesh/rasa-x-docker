@@ -1,11 +1,9 @@
-FROM rasa/rasa:3.0.9-full
+FROM rasa/rasa:2.8.26-full
 
-RUN curl -OL http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz && \
-  tar -xvf libxml2-2.9.1.tar.gz && \
-  cd libxml2-2.9.1 && \
-  ./configure && make && make install && \
-  cd .. && \
-  rm -f libxml2-2.9.1.tar.gz && \
-  rm -rf libxml2-2.9.1
+USER root
 
-RUN pip3 install rasa-x --pre --extra-index-url https://pypi.rasa.com/simple
+RUN apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev libxmlsec1-openssl build-essential pkg-config libxml2-dev libxmlsec1-dev libxmlsec1-openssl
+
+RUN pip install rasa-x --pre --extra-index-url https://pypi.rasa.com/simple
+
+USER 1001
